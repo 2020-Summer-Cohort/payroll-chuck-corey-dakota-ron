@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CompanyPayroll
 {
-    class PayrollEmployee
+    public class PayrollEmployee
     {
         public int employeeId { get; set; }
         public string firstName { get; set; }
@@ -15,6 +15,13 @@ namespace CompanyPayroll
         {
             return lastName + ", " + firstName;
         }
-
+        public double GetPaycheckTotal()
+        {
+            return paycheckTotal;
+        }
+        public int GetEmployeeId()
+        {
+            return employeeId;
+        }
     }
 }
