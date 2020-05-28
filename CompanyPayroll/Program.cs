@@ -11,25 +11,62 @@ namespace CompanyPayroll
             //Console.WriteLine(payrollEmployeeWorker.GetEmployeeName());
             List<PayrollEmployee> payrollEmployeeWorkers = new List<PayrollEmployee>();
             PopulateEmployeeList(payrollEmployeeWorkers);
-            Console.WriteLine(payrollEmployeeWorkers[1].lastName); 
+            bool whilePlaying = true;
+            while (whilePlaying)
+            {
+                ShowMenu();
+                Console.WriteLine("Please choose a menu option");
+                string userInput = Console.ReadLine();
+                switch (userInput)
+                {
+                    case "1":
+                        ListEmployees(payrollEmployeeWorkers);
+                        break;
+                    case "2":
+                        break;
+                    case "3":
+                        break;
+                    case "4":
+                        whilePlaying = false;
+                        break;
+                    default:
+                        Console.WriteLine("Please choose a valid option");
+                        break;
+                }
+            }
+            
         }
         static void PopulateEmployeeList(List<PayrollEmployee> employees)
         {
             PayrollEmployee payrollEmployeeWorker = new PayrollEmployee();
             payrollEmployeeWorker.lastName = "Givens";
             payrollEmployeeWorker.firstName = "Hannah";
-            payrollEmployeeWorker.employeeId = 001;
+            payrollEmployeeWorker.employeeId = 101;
             employees.Add(payrollEmployeeWorker);
             payrollEmployeeWorker = new PayrollEmployee();
-            payrollEmployeeWorker.lastName = "Bennett";
-            payrollEmployeeWorker.firstName = "Whittle";
-            payrollEmployeeWorker.employeeId = 002;
+            payrollEmployeeWorker.lastName = "Whittle";
+            payrollEmployeeWorker.firstName = "Bennett";
+            payrollEmployeeWorker.employeeId = 102;
             employees.Add(payrollEmployeeWorker);
             payrollEmployeeWorker = new PayrollEmployee();
-            payrollEmployeeWorker.lastName = "Steve";
-            payrollEmployeeWorker.firstName = "Jobs";
-            payrollEmployeeWorker.employeeId = 003;
+            payrollEmployeeWorker.lastName = "jobs";
+            payrollEmployeeWorker.firstName = "Steve";
+            payrollEmployeeWorker.employeeId = 103;
             employees.Add(payrollEmployeeWorker);
+        }
+        static void ListEmployees(List<PayrollEmployee> employees)
+        {
+            foreach (PayrollEmployee employee in employees)
+            {
+                Console.WriteLine(employee.employeeId + " " + employee.lastName + ", " + employee.firstName);
+            }
+        }
+        static void ShowMenu()
+        {
+            Console.WriteLine("1. List employees in company roster");
+            Console.WriteLine("2. Prompt for information on current pay period");
+            Console.WriteLine("3. Output list of employees with paycheck");
+            Console.WriteLine("4. Quit");
         }
     }
 }
