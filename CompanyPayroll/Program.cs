@@ -11,29 +11,31 @@ namespace CompanyPayroll
             //Console.WriteLine(payrollEmployeeWorker.GetEmployeeName());
             List<PayrollEmployee> payrollEmployeeWorkers = new List<PayrollEmployee>();
             PopulateEmployeeList(payrollEmployeeWorkers);
-            bool whilePlaying = true;
-            while (whilePlaying)
-            {
-                ShowMenu();
-                Console.WriteLine("Please choose a menu option");
-                string userInput = Console.ReadLine();
-                switch (userInput)
-                {
-                    case "1":
-                        ListEmployees(payrollEmployeeWorkers);
-                        break;
-                    case "2":
-                        break;
-                    case "3":
-                        break;
-                    case "4":
-                        whilePlaying = false;
-                        break;
-                    default:
-                        Console.WriteLine("Please choose a valid option");
-                        break;
-                }
-            }
+            ListEmployees(payrollEmployeeWorkers);
+            ListEmployeesWithPay(payrollEmployeeWorkers);
+            //bool whilePlaying = true;
+            //while (whilePlaying)
+            //{
+            //    ShowMenu();
+            //    Console.WriteLine("Please choose a menu option");
+            //    string userInput = Console.ReadLine();
+            //    switch (userInput)
+            //    {
+            //        case "1":
+            //            ListEmployees(payrollEmployeeWorkers);
+            //            break;
+            //        case "2":
+            //            break;
+            //        case "3":
+            //            break;
+            //        case "4":
+            //            whilePlaying = false;
+            //            break;
+            //        default:
+            //            Console.WriteLine("Please choose a valid option");
+            //            break;
+            //    }
+            //}
             
         }
         static void PopulateEmployeeList(List<PayrollEmployee> employees)
@@ -68,5 +70,13 @@ namespace CompanyPayroll
             Console.WriteLine("3. Output list of employees with paycheck");
             Console.WriteLine("4. Quit");
         }
+        static void ListEmployeesWithPay(List<PayrollEmployee> employees)
+        {
+            foreach (PayrollEmployee employee in employees)
+            {
+                Console.WriteLine(employee.employeeId + " " + employee.lastName + ", " + employee.firstName + " " + employee.paycheckTotal);
+            }
+        }
+
     }
 }
