@@ -1,21 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Transactions;
 
 namespace CompanyPayroll
 {
     public class PayrollSales:PayrollEmployee
     {
-        public double SalesComission { get; set; }
+        public double SalesCommission { get; set; }
         public double PayPeriodEarnings { get; set; }
-        public void RecieveBonus()
+        public double Bonus { get; set; }
+        public void ReceiveBonus(double bonus)
         {
-
+            Bonus = bonus;     
         }
-        public void SetSalesComission(double salesComissionAmount)
+        public void SetSalesCommission(double salesCommissionAmount)
         {
-            SalesComission = salesComissionAmount;
+            SalesCommission = salesCommissionAmount;
         }
+        
     }
     
 }

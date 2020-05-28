@@ -40,21 +40,21 @@ namespace CompanyPayroll
         }
         static void PopulateEmployeeList(List<PayrollEmployee> employees)
         {
-            PayrollEmployee payrollEmployeeWorker = new PayrollEmployee();
+            PayrollSales payrollEmployeeWorker = new PayrollSales();
             payrollEmployeeWorker.lastName = "Givens";
             payrollEmployeeWorker.firstName = "Hannah";
             payrollEmployeeWorker.employeeId = 101;
             employees.Add(payrollEmployeeWorker);
-            payrollEmployeeWorker = new PayrollEmployee();
-            payrollEmployeeWorker.lastName = "Whittle";
-            payrollEmployeeWorker.firstName = "Bennett";
-            payrollEmployeeWorker.employeeId = 102;
-            employees.Add(payrollEmployeeWorker);
-            payrollEmployeeWorker = new PayrollEmployee();
-            payrollEmployeeWorker.lastName = "jobs";
-            payrollEmployeeWorker.firstName = "Steve";
-            payrollEmployeeWorker.employeeId = 103;
-            employees.Add(payrollEmployeeWorker);
+            //payrollEmployeeWorker = new PayrollEmployee();
+            //payrollEmployeeWorker.lastName = "Whittle";
+            //payrollEmployeeWorker.firstName = "Bennett";
+            //payrollEmployeeWorker.employeeId = 102;
+            //employees.Add(payrollEmployeeWorker);
+            //payrollEmployeeWorker = new PayrollEmployee();
+            //payrollEmployeeWorker.lastName = "jobs";
+            //payrollEmployeeWorker.firstName = "Steve";
+            //payrollEmployeeWorker.employeeId = 103;
+            //employees.Add(payrollEmployeeWorker);
         }
         static void ListEmployees(List<PayrollEmployee> employees)
         {
@@ -75,6 +75,22 @@ namespace CompanyPayroll
             foreach (PayrollEmployee employee in employees)
             {
                 Console.WriteLine(employee.employeeId + " " + employee.lastName + ", " + employee.firstName + " " + employee.paycheckTotal);
+            }
+        }
+        static void ReceivePayrollInfo(List<PayrollEmployee> employees)
+        {
+            foreach (PayrollEmployee employee in employees)
+             {
+                if (employee.GetType() == typeof(PayrollSales))
+                {
+                    PayrollSales salesEmployee = new PayrollSales();
+                    salesEmployee = (PayrollSales)employee;
+                    salesEmployee.ReceiveBonus(1);
+                }
+           
+                Console.WriteLine($"enter bonus for {employee.employeeId}");
+                string bonus = Console.ReadLine();
+                
             }
         }
 
