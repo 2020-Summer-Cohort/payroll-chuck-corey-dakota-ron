@@ -12,8 +12,8 @@ namespace CompanyPayroll
             PopulateEmployeeList(payrollEmployeeWorkers);
             ListEmployees(payrollEmployeeWorkers);
             double bonusAmount = PromptUserForBonusInfo();
-            //int hoursWorked = PromptUserForHoursInfo();
-            ReceivePayrollInfo(payrollEmployeeWorkers,bonusAmount);
+            int hoursWorked = PromptUserForHoursInfo();
+            ReceivePayrollInfo(payrollEmployeeWorkers,bonusAmount, hoursWorked);
             CalculatePay(payrollEmployeeWorkers);
             ListEmployeesWithPay(payrollEmployeeWorkers);
             
@@ -26,11 +26,12 @@ namespace CompanyPayroll
             payrollEmployeeWorker.firstName = "Hannah";
             payrollEmployeeWorker.employeeId = 101;
             employees.Add(payrollEmployeeWorker);
-            //payrollEmployeeWorker = new PayrollEmployee();
-            //payrollEmployeeWorker.lastName = "Whittle";
-            //payrollEmployeeWorker.firstName = "Bennett";
-            //payrollEmployeeWorker.employeeId = 102;
-            //employees.Add(payrollEmployeeWorker);
+
+            PayrollHourly payrollEmployeeHourly = new PayrollHourly();
+            payrollEmployeeHourly.lastName = "Whittle";
+            payrollEmployeeHourly.firstName = "Bennett";
+            payrollEmployeeHourly.employeeId = 102;
+            employees.Add(payrollEmployeeHourly);
             //payrollEmployeeWorker = new PayrollEmployee();
             //payrollEmployeeWorker.lastName = "jobs";
             //payrollEmployeeWorker.firstName = "Steve";
@@ -39,6 +40,7 @@ namespace CompanyPayroll
         }
         static void ListEmployees(List<PayrollEmployee> employees)
         {
+            Console.WriteLine();
             foreach (PayrollEmployee employee in employees)
             {
                 Console.WriteLine(employee.employeeId + " " + employee.lastName + ", " + employee.firstName);
@@ -46,6 +48,7 @@ namespace CompanyPayroll
         }
         static void ListEmployeesWithPay(List<PayrollEmployee> employees)
         {
+            Console.WriteLine();
             foreach (PayrollEmployee employee in employees)
             {
                 Console.WriteLine(employee.employeeId + " " + employee.lastName + ", " + employee.firstName + " " + employee.paycheckTotal);
@@ -54,7 +57,7 @@ namespace CompanyPayroll
 
         static double PromptUserForBonusInfo()
         {
-            Console.WriteLine("What was the bonus for this pay period?");
+            Console.WriteLine("\nWhat was the bonus for this pay period?");
             double bonus = Convert.ToInt32(Console.ReadLine());
             return bonus;
         }
@@ -77,10 +80,16 @@ namespace CompanyPayroll
                     salesEmployee.SetPayPeriodEarnings(3000);
                     employee.paycheckTotal = salesEmployee.PayPeriodEarnings + salesEmployee.SalesCommission + salesEmployee.Bonus;
                 }
+                if (employee is PayrollHourly)
+                {
+                    PayrollHourly salesEmployee;
+                    salesEmployee = (PayrollHourly)employee;
+                    employee.paycheckTotal = salesEmployee.HoursWorked * 20.00;
+                }
             }
         }
         
-        static void ReceivePayrollInfo(List<PayrollEmployee> employees, double bonus)
+        static void ReceivePayrollInfo(List<PayrollEmployee> employees, double bonus, int hoursWorked)
         {
             foreach (PayrollEmployee employee in employees)
              {
@@ -90,6 +99,12 @@ namespace CompanyPayroll
                     salesEmployee = (PayrollSales)employee;
                     salesEmployee.SetSalesCommission(1000);
                     salesEmployee.ReceiveBonus(bonus);
+                }
+                else if (employee is PayrollHourly)
+                {
+                    PayrollHourly hourlyEmployee;
+                    hourlyEmployee = (PayrollHourly)employee;
+                    hourlyEmployee.SetHoursWorked(hoursWorked);
                 }
                 
             }
