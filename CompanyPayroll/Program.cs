@@ -32,11 +32,12 @@ namespace CompanyPayroll
             payrollEmployeeHourly.firstName = "Bennett";
             payrollEmployeeHourly.employeeId = 102;
             employees.Add(payrollEmployeeHourly);
-            //payrollEmployeeWorker = new PayrollEmployee();
-            //payrollEmployeeWorker.lastName = "jobs";
-            //payrollEmployeeWorker.firstName = "Steve";
-            //payrollEmployeeWorker.employeeId = 103;
-            //employees.Add(payrollEmployeeWorker);
+
+            PayrollDeveloper payrollEmployeeDeveloper = new PayrollDeveloper();
+            payrollEmployeeDeveloper.lastName = "Jobs";
+            payrollEmployeeDeveloper.firstName = "Steve";
+            payrollEmployeeDeveloper.employeeId = 103;
+            employees.Add(payrollEmployeeDeveloper);
         }
         static void ListEmployees(List<PayrollEmployee> employees)
         {
@@ -86,6 +87,15 @@ namespace CompanyPayroll
                     salesEmployee = (PayrollHourly)employee;
                     employee.paycheckTotal = salesEmployee.HoursWorked * 20.00;
                 }
+                else if (employee is PayrollDeveloper)
+                {
+                    PayrollDeveloper developerEmployee;
+                    developerEmployee = (PayrollDeveloper)employee;
+                    developerEmployee.SetPayPeriordEarnings(9000);
+                    employee.paycheckTotal = developerEmployee.PayPeriodEarnings + developerEmployee.Bonus + developerEmployee.Insurance;
+
+                }
+
             }
         }
         
@@ -106,9 +116,18 @@ namespace CompanyPayroll
                     hourlyEmployee = (PayrollHourly)employee;
                     hourlyEmployee.SetHoursWorked(hoursWorked);
                 }
-                
+                else if (employee is PayrollDeveloper)
+                {
+                    PayrollDeveloper developerEmployee;
+                    developerEmployee = (PayrollDeveloper)employee;
+                    developerEmployee.ReceiveBonus(bonus);
+                    developerEmployee.PayInsurance(80);
+
+                }
+
+
             }
-        }
+            }
 
     }
 }
