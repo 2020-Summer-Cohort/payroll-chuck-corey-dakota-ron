@@ -18,6 +18,11 @@ namespace CompanyPayroll
         {
             SalesCommission = salesCommissionAmount;
         }
+
+        public void SetPayPeriodEarnings (double earnings)
+        {
+            PayPeriodEarnings = earnings;
+        }
         
     }
     

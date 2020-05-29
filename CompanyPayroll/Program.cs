@@ -7,37 +7,20 @@ namespace CompanyPayroll
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            //Console.WriteLine(payrollEmployeeWorker.GetEmployeeName());
+            Console.WriteLine("Welcome to the Company Payroll App!");
             List<PayrollEmployee> payrollEmployeeWorkers = new List<PayrollEmployee>();
             PopulateEmployeeList(payrollEmployeeWorkers);
             ListEmployees(payrollEmployeeWorkers);
+            //Prompt User
+            double bonusAmount = PromptUserForBonusInfo();
+            int hoursWorked = PromptUserForHoursInfo();
+            //Console.WriteLine($"bouns = {bonusAmount}  hours={hoursWorked}");
+            //Calc Pay
+            CalculatePay(payrollEmployeeWorkers);
             ListEmployeesWithPay(payrollEmployeeWorkers);
-            //bool whilePlaying = true;
-            //while (whilePlaying)
-            //{
-            //    ShowMenu();
-            //    Console.WriteLine("Please choose a menu option");
-            //    string userInput = Console.ReadLine();
-            //    switch (userInput)
-            //    {
-            //        case "1":
-            //            ListEmployees(payrollEmployeeWorkers);
-            //            break;
-            //        case "2":
-            //            break;
-            //        case "3":
-            //            break;
-            //        case "4":
-            //            whilePlaying = false;
-            //            break;
-            //        default:
-            //            Console.WriteLine("Please choose a valid option");
-            //            break;
-            //    }
-            //}
             
         }
+
         static void PopulateEmployeeList(List<PayrollEmployee> employees)
         {
             PayrollSales payrollEmployeeWorker = new PayrollSales();
@@ -63,13 +46,6 @@ namespace CompanyPayroll
                 Console.WriteLine(employee.employeeId + " " + employee.lastName + ", " + employee.firstName);
             }
         }
-        static void ShowMenu()
-        {
-            Console.WriteLine("1. List employees in company roster");
-            Console.WriteLine("2. Prompt for information on current pay period");
-            Console.WriteLine("3. Output list of employees with paycheck");
-            Console.WriteLine("4. Quit");
-        }
         static void ListEmployeesWithPay(List<PayrollEmployee> employees)
         {
             foreach (PayrollEmployee employee in employees)
@@ -77,6 +53,35 @@ namespace CompanyPayroll
                 Console.WriteLine(employee.employeeId + " " + employee.lastName + ", " + employee.firstName + " " + employee.paycheckTotal);
             }
         }
+
+        static double PromptUserForBonusInfo()
+        {
+            Console.WriteLine("What was the bonus for this pay period?");
+            double bonus = Convert.ToInt32(Console.ReadLine());
+            return bonus;
+        }
+
+        static int PromptUserForHoursInfo()
+        {
+            Console.WriteLine("How many hours did the hourly employees work this pay period?");
+            int hours = Convert.ToInt32(Console.ReadLine());
+            return hours;
+        }
+
+        static void CalculatePay(List<PayrollEmployee> employees)
+        {
+            foreach (PayrollEmployee employee in employees)
+            {
+                if (employee is PayrollSales)
+                {
+                    PayrollSales salesEmployee;
+                    salesEmployee = (PayrollSales)employee;
+                    salesEmployee.SetPayPeriodEarnings(3000);
+                    employee.paycheckTotal = salesEmployee.PayPeriodEarnings; // need to add bonus and commission
+                }
+            }
+        }
+        
         static void ReceivePayrollInfo(List<PayrollEmployee> employees)
         {
             foreach (PayrollEmployee employee in employees)
