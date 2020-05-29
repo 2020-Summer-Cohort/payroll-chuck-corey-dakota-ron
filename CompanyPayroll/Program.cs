@@ -11,11 +11,9 @@ namespace CompanyPayroll
             List<PayrollEmployee> payrollEmployeeWorkers = new List<PayrollEmployee>();
             PopulateEmployeeList(payrollEmployeeWorkers);
             ListEmployees(payrollEmployeeWorkers);
-            //Prompt User
             double bonusAmount = PromptUserForBonusInfo();
-            int hoursWorked = PromptUserForHoursInfo();
-            //Console.WriteLine($"bouns = {bonusAmount}  hours={hoursWorked}");
-            //Calc Pay
+            //int hoursWorked = PromptUserForHoursInfo();
+            ReceivePayrollInfo(payrollEmployeeWorkers,bonusAmount);
             CalculatePay(payrollEmployeeWorkers);
             ListEmployeesWithPay(payrollEmployeeWorkers);
             
@@ -77,24 +75,22 @@ namespace CompanyPayroll
                     PayrollSales salesEmployee;
                     salesEmployee = (PayrollSales)employee;
                     salesEmployee.SetPayPeriodEarnings(3000);
-                    employee.paycheckTotal = salesEmployee.PayPeriodEarnings; // need to add bonus and commission
+                    employee.paycheckTotal = salesEmployee.PayPeriodEarnings + salesEmployee.SalesCommission + salesEmployee.Bonus;
                 }
             }
         }
         
-        static void ReceivePayrollInfo(List<PayrollEmployee> employees)
+        static void ReceivePayrollInfo(List<PayrollEmployee> employees, double bonus)
         {
             foreach (PayrollEmployee employee in employees)
              {
-                if (employee.GetType() == typeof(PayrollSales))
+                if (employee is PayrollSales)
                 {
-                    PayrollSales salesEmployee = new PayrollSales();
+                    PayrollSales salesEmployee;
                     salesEmployee = (PayrollSales)employee;
-                    salesEmployee.ReceiveBonus(1);
+                    salesEmployee.SetSalesCommission(1000);
+                    salesEmployee.ReceiveBonus(bonus);
                 }
-           
-                Console.WriteLine($"enter bonus for {employee.employeeId}");
-                string bonus = Console.ReadLine();
                 
             }
         }
