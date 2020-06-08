@@ -21,32 +21,6 @@ namespace CompanyPayroll
             
         }
 
-        //static void PopulateEmployeeList(List<PayrollEmployee> employees)
-        //{
-        //    PayrollSales payrollEmployeeWorker = new PayrollSales();
-        //    payrollEmployeeWorker.lastName = "Givens";
-        //    payrollEmployeeWorker.firstName = "Hannah";
-        //    payrollEmployeeWorker.employeeId = 101;
-        //    employees.Add(payrollEmployeeWorker);
-
-        //    PayrollHourly payrollEmployeeHourly = new PayrollHourly();
-        //    payrollEmployeeHourly.lastName = "Whittle";
-        //    payrollEmployeeHourly.firstName = "Bennett";
-        //    payrollEmployeeHourly.employeeId = 102;
-        //    employees.Add(payrollEmployeeHourly);
-
-        //    PayrollDeveloper payrollEmployeeDeveloper = new PayrollDeveloper();
-        //    payrollEmployeeDeveloper.lastName = "Jobs";
-        //    payrollEmployeeDeveloper.firstName = "Steve";
-        //    payrollEmployeeDeveloper.employeeId = 103;
-        //    employees.Add(payrollEmployeeDeveloper);
-
-        //    PayrollExecutivese payrollEmployeeExecutivese = new PayrollExecutivese();
-        //    payrollEmployeeExecutivese.lastName = "Musk";
-        //    payrollEmployeeExecutivese.firstName = "Elon";
-        //    payrollEmployeeExecutivese.employeeId = 104;
-        //    employees.Add(payrollEmployeeExecutivese);
-        //}
         static void ListEmployees(List<PayrollEmployee> employees)
         {
             Console.WriteLine();
@@ -77,42 +51,6 @@ namespace CompanyPayroll
             int hours = Convert.ToInt32(Console.ReadLine());
             return hours;
         }
-
-        //static void CalculatePay(List<PayrollEmployee> employees)
-        //{
-        //    foreach (PayrollEmployee employee in employees)
-        //    {
-        //        if (employee is PayrollSales)
-        //        {
-        //            PayrollSales salesEmployee;
-        //            salesEmployee = (PayrollSales)employee;
-        //            salesEmployee.SetPayPeriodEarnings(3000);
-        //            employee.paycheckTotal = salesEmployee.PayPeriodEarnings + salesEmployee.SalesCommission + salesEmployee.Bonus;
-        //        }
-        //        if (employee is PayrollHourly)
-        //        {
-        //            PayrollHourly salesEmployee;
-        //            salesEmployee = (PayrollHourly)employee;
-        //            employee.paycheckTotal = salesEmployee.HoursWorked * 20.00;
-        //        }
-        //        else if (employee is PayrollDeveloper)
-        //        {
-        //            PayrollDeveloper developerEmployee;
-        //            developerEmployee = (PayrollDeveloper)employee;
-        //            developerEmployee.SetPayPeriordEarnings(9000);
-        //            employee.paycheckTotal = developerEmployee.PayPeriodEarnings + developerEmployee.Bonus - developerEmployee.Insurance;
-
-        //        }
-        //        else if(employee is PayrollExecutivese)
-        //        {
-        //            PayrollExecutivese executiveseEmployee;
-        //            executiveseEmployee = (PayrollExecutivese)employee;
-        //            executiveseEmployee.SetPayPeriordEarnings(20000);
-        //            employee.paycheckTotal = executiveseEmployee.PayPeriodEarnings + executiveseEmployee.Bonus - executiveseEmployee.Insurance;
-        //        }
-
-        //    }
-        //}
         
         static void ReceivePayrollInfo(List<PayrollEmployee> employees, double bonus, int hoursWorked)
         {
