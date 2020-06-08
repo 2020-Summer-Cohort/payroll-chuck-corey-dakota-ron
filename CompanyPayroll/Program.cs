@@ -14,7 +14,8 @@ namespace CompanyPayroll
             double bonusAmount = PromptUserForBonusInfo();
             int hoursWorked = PromptUserForHoursInfo();
             ReceivePayrollInfo(payrollEmployeeWorkers,bonusAmount, hoursWorked);
-            CalculatePay(payrollEmployeeWorkers);
+            CompanyRoster companyRoster = new CompanyRoster();
+            companyRoster.CalculatePay(payrollEmployeeWorkers);
             ListEmployeesWithPay(payrollEmployeeWorkers);
             
         }
@@ -76,41 +77,41 @@ namespace CompanyPayroll
             return hours;
         }
 
-        static void CalculatePay(List<PayrollEmployee> employees)
-        {
-            foreach (PayrollEmployee employee in employees)
-            {
-                if (employee is PayrollSales)
-                {
-                    PayrollSales salesEmployee;
-                    salesEmployee = (PayrollSales)employee;
-                    salesEmployee.SetPayPeriodEarnings(3000);
-                    employee.paycheckTotal = salesEmployee.PayPeriodEarnings + salesEmployee.SalesCommission + salesEmployee.Bonus;
-                }
-                if (employee is PayrollHourly)
-                {
-                    PayrollHourly salesEmployee;
-                    salesEmployee = (PayrollHourly)employee;
-                    employee.paycheckTotal = salesEmployee.HoursWorked * 20.00;
-                }
-                else if (employee is PayrollDeveloper)
-                {
-                    PayrollDeveloper developerEmployee;
-                    developerEmployee = (PayrollDeveloper)employee;
-                    developerEmployee.SetPayPeriordEarnings(9000);
-                    employee.paycheckTotal = developerEmployee.PayPeriodEarnings + developerEmployee.Bonus - developerEmployee.Insurance;
+        //static void CalculatePay(List<PayrollEmployee> employees)
+        //{
+        //    foreach (PayrollEmployee employee in employees)
+        //    {
+        //        if (employee is PayrollSales)
+        //        {
+        //            PayrollSales salesEmployee;
+        //            salesEmployee = (PayrollSales)employee;
+        //            salesEmployee.SetPayPeriodEarnings(3000);
+        //            employee.paycheckTotal = salesEmployee.PayPeriodEarnings + salesEmployee.SalesCommission + salesEmployee.Bonus;
+        //        }
+        //        if (employee is PayrollHourly)
+        //        {
+        //            PayrollHourly salesEmployee;
+        //            salesEmployee = (PayrollHourly)employee;
+        //            employee.paycheckTotal = salesEmployee.HoursWorked * 20.00;
+        //        }
+        //        else if (employee is PayrollDeveloper)
+        //        {
+        //            PayrollDeveloper developerEmployee;
+        //            developerEmployee = (PayrollDeveloper)employee;
+        //            developerEmployee.SetPayPeriordEarnings(9000);
+        //            employee.paycheckTotal = developerEmployee.PayPeriodEarnings + developerEmployee.Bonus - developerEmployee.Insurance;
 
-                }
-                else if(employee is PayrollExecutivese)
-                {
-                    PayrollExecutivese executiveseEmployee;
-                    executiveseEmployee = (PayrollExecutivese)employee;
-                    executiveseEmployee.SetPayPeriordEarnings(20000);
-                    employee.paycheckTotal = executiveseEmployee.PayPeriodEarnings + executiveseEmployee.Bonus - executiveseEmployee.Insurance;
-                }
+        //        }
+        //        else if(employee is PayrollExecutivese)
+        //        {
+        //            PayrollExecutivese executiveseEmployee;
+        //            executiveseEmployee = (PayrollExecutivese)employee;
+        //            executiveseEmployee.SetPayPeriordEarnings(20000);
+        //            employee.paycheckTotal = executiveseEmployee.PayPeriodEarnings + executiveseEmployee.Bonus - executiveseEmployee.Insurance;
+        //        }
 
-            }
-        }
+        //    }
+        //}
         
         static void ReceivePayrollInfo(List<PayrollEmployee> employees, double bonus, int hoursWorked)
         {
