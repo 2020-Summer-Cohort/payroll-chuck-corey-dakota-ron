@@ -41,5 +41,52 @@ namespace CompanyPayroll
 
             }
         }
+
+       public void PopulateEmployeeList(List<PayrollEmployee> employees)
+        {
+            PayrollSales payrollEmployeeWorker = new PayrollSales();
+            payrollEmployeeWorker.lastName = "Givens";
+            payrollEmployeeWorker.firstName = "Hannah";
+            payrollEmployeeWorker.employeeId = 101;
+            employees.Add(payrollEmployeeWorker);
+
+            PayrollHourly payrollEmployeeHourly = new PayrollHourly();
+            payrollEmployeeHourly.lastName = "Whittle";
+            payrollEmployeeHourly.firstName = "Bennett";
+            payrollEmployeeHourly.employeeId = 102;
+            employees.Add(payrollEmployeeHourly);
+
+            payrollEmployeeHourly = new PayrollHourly();
+            payrollEmployeeHourly.lastName = "James";
+            payrollEmployeeHourly.firstName = "LeBron";
+            payrollEmployeeHourly.employeeId = 108;
+            employees.Add(payrollEmployeeHourly);
+
+            PayrollDeveloper payrollEmployeeDeveloper = new PayrollDeveloper();
+            payrollEmployeeDeveloper.lastName = "Jobs";
+            payrollEmployeeDeveloper.firstName = "Steve";
+            payrollEmployeeDeveloper.employeeId = 103;
+            employees.Add(payrollEmployeeDeveloper);
+
+            payrollEmployeeDeveloper = new PayrollDeveloper();
+            payrollEmployeeDeveloper.lastName = "Ballmer";
+            payrollEmployeeDeveloper.firstName = "Steve";
+            payrollEmployeeDeveloper.employeeId = 106;
+            employees.Add(payrollEmployeeDeveloper);
+
+            payrollEmployeeDeveloper = new PayrollDeveloper();
+            payrollEmployeeDeveloper.lastName = "Wynn";
+            payrollEmployeeDeveloper.firstName = "Steve";
+            payrollEmployeeDeveloper.employeeId = 107;
+            employees.Add(payrollEmployeeDeveloper);
+
+            PayrollExecutivese payrollEmployeeExecutivese = new PayrollExecutivese();
+            payrollEmployeeExecutivese.lastName = "Musk";
+            payrollEmployeeExecutivese.firstName = "Elon";
+            payrollEmployeeExecutivese.employeeId = 104;
+            employees.Add(payrollEmployeeExecutivese);
+        }
     }
+
+
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace CompanyPayroll
 {
@@ -8,44 +9,44 @@ namespace CompanyPayroll
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to the Company Payroll App!");
+            CompanyRoster companyRoster = new CompanyRoster();
             List<PayrollEmployee> payrollEmployeeWorkers = new List<PayrollEmployee>();
-            PopulateEmployeeList(payrollEmployeeWorkers);
+            companyRoster.PopulateEmployeeList(payrollEmployeeWorkers);
             ListEmployees(payrollEmployeeWorkers);
             double bonusAmount = PromptUserForBonusInfo();
             int hoursWorked = PromptUserForHoursInfo();
             ReceivePayrollInfo(payrollEmployeeWorkers,bonusAmount, hoursWorked);
-            CompanyRoster companyRoster = new CompanyRoster();
             companyRoster.CalculatePay(payrollEmployeeWorkers);
             ListEmployeesWithPay(payrollEmployeeWorkers);
             
         }
 
-        static void PopulateEmployeeList(List<PayrollEmployee> employees)
-        {
-            PayrollSales payrollEmployeeWorker = new PayrollSales();
-            payrollEmployeeWorker.lastName = "Givens";
-            payrollEmployeeWorker.firstName = "Hannah";
-            payrollEmployeeWorker.employeeId = 101;
-            employees.Add(payrollEmployeeWorker);
+        //static void PopulateEmployeeList(List<PayrollEmployee> employees)
+        //{
+        //    PayrollSales payrollEmployeeWorker = new PayrollSales();
+        //    payrollEmployeeWorker.lastName = "Givens";
+        //    payrollEmployeeWorker.firstName = "Hannah";
+        //    payrollEmployeeWorker.employeeId = 101;
+        //    employees.Add(payrollEmployeeWorker);
 
-            PayrollHourly payrollEmployeeHourly = new PayrollHourly();
-            payrollEmployeeHourly.lastName = "Whittle";
-            payrollEmployeeHourly.firstName = "Bennett";
-            payrollEmployeeHourly.employeeId = 102;
-            employees.Add(payrollEmployeeHourly);
+        //    PayrollHourly payrollEmployeeHourly = new PayrollHourly();
+        //    payrollEmployeeHourly.lastName = "Whittle";
+        //    payrollEmployeeHourly.firstName = "Bennett";
+        //    payrollEmployeeHourly.employeeId = 102;
+        //    employees.Add(payrollEmployeeHourly);
 
-            PayrollDeveloper payrollEmployeeDeveloper = new PayrollDeveloper();
-            payrollEmployeeDeveloper.lastName = "Jobs";
-            payrollEmployeeDeveloper.firstName = "Steve";
-            payrollEmployeeDeveloper.employeeId = 103;
-            employees.Add(payrollEmployeeDeveloper);
+        //    PayrollDeveloper payrollEmployeeDeveloper = new PayrollDeveloper();
+        //    payrollEmployeeDeveloper.lastName = "Jobs";
+        //    payrollEmployeeDeveloper.firstName = "Steve";
+        //    payrollEmployeeDeveloper.employeeId = 103;
+        //    employees.Add(payrollEmployeeDeveloper);
 
-            PayrollExecutivese payrollEmployeeExecutivese = new PayrollExecutivese();
-            payrollEmployeeExecutivese.lastName = "Musk";
-            payrollEmployeeExecutivese.firstName = "Elon";
-            payrollEmployeeExecutivese.employeeId = 104;
-            employees.Add(payrollEmployeeExecutivese);
-        }
+        //    PayrollExecutivese payrollEmployeeExecutivese = new PayrollExecutivese();
+        //    payrollEmployeeExecutivese.lastName = "Musk";
+        //    payrollEmployeeExecutivese.firstName = "Elon";
+        //    payrollEmployeeExecutivese.employeeId = 104;
+        //    employees.Add(payrollEmployeeExecutivese);
+        //}
         static void ListEmployees(List<PayrollEmployee> employees)
         {
             Console.WriteLine();
@@ -59,7 +60,7 @@ namespace CompanyPayroll
             Console.WriteLine();
             foreach (PayrollEmployee employee in employees)
             {
-                Console.WriteLine(employee.employeeId + " " + employee.lastName + ", " + employee.firstName + " " + employee.paycheckTotal);
+                Console.WriteLine(employee.employeeId + " " + employee.lastName + ", " + employee.firstName + " " + employee.paycheckTotal.ToString("C3",CultureInfo.CurrentCulture));
             }
         }
 
