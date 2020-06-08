@@ -38,6 +38,12 @@ namespace CompanyPayroll
             payrollEmployeeDeveloper.firstName = "Steve";
             payrollEmployeeDeveloper.employeeId = 103;
             employees.Add(payrollEmployeeDeveloper);
+
+            PayrollExecutivese payrollEmployeeExecutivese = new PayrollExecutivese();
+            payrollEmployeeExecutivese.lastName = "Musk";
+            payrollEmployeeExecutivese.firstName = "Elon";
+            payrollEmployeeExecutivese.employeeId = 104;
+            employees.Add(payrollEmployeeExecutivese);
         }
         static void ListEmployees(List<PayrollEmployee> employees)
         {
@@ -92,8 +98,15 @@ namespace CompanyPayroll
                     PayrollDeveloper developerEmployee;
                     developerEmployee = (PayrollDeveloper)employee;
                     developerEmployee.SetPayPeriordEarnings(9000);
-                    employee.paycheckTotal = developerEmployee.PayPeriodEarnings + developerEmployee.Bonus + developerEmployee.Insurance;
+                    employee.paycheckTotal = developerEmployee.PayPeriodEarnings + developerEmployee.Bonus - developerEmployee.Insurance;
 
+                }
+                else if(employee is PayrollExecutivese)
+                {
+                    PayrollExecutivese executiveseEmployee;
+                    executiveseEmployee = (PayrollExecutivese)employee;
+                    executiveseEmployee.SetPayPeriordEarnings(20000);
+                    employee.paycheckTotal = executiveseEmployee.PayPeriodEarnings + executiveseEmployee.Bonus - executiveseEmployee.Insurance;
                 }
 
             }
@@ -123,6 +136,13 @@ namespace CompanyPayroll
                     developerEmployee.ReceiveBonus(bonus);
                     developerEmployee.PayInsurance(80);
 
+                }
+                else if (employee is PayrollExecutivese)
+                {
+                    PayrollExecutivese executiveseEmployee;
+                    executiveseEmployee = (PayrollExecutivese)employee;
+                    executiveseEmployee.ReceiveBonus(bonus);
+                    executiveseEmployee.PayInsurance(10);
                 }
 
 
